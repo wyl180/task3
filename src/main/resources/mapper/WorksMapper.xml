@@ -38,6 +38,9 @@
         m.message_at messageAt,
         m.status mStatus,
         m.message_by mMessageBy,
+        m.reply_name mReplyName,
+        m.reply_time mReplyTime,
+        m.reply_content mReplyContent,
         w.id wid ,
         w.name wName
         from  works w,message m
@@ -52,6 +55,9 @@
       <result property="messageTime" column="messageAt"/>
       <result property="touristName" column="mMessageBy"/>
       <result property="status" column="mStatus"/>
+      <result property="replyName" column="mReplyName"/>
+      <result property="replyTime" column="mReplyTime"/>
+      <result property="replyContent" column=" mReplyContent"/>
       <result property="worksId" column="wid"/>
     </collection>
   </resultMap>
