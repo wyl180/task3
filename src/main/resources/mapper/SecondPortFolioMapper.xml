@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.SecondPortFolioMapper">
+
+  <select id="getAllWorkList" resultMap="secondWorkList">
+        select w.id wid ,w.name wname ,w.intro wintro,w.t_image wtimage,s.id sid ,s.name sname
+        from second_portfolio s, works w
+        where w.second_id = s.id and s.id =#{id}
+    </select>
+  <resultMap id="secondWorkList" type="com.jnshu.pojo.SecondPortFolio">
+    <result property="id" column="sid"/>
+    <result property="name" column="sname"/>
+    <collection property="worksList" ofType="com.jnshu.pojo.Works">
+      <result property="id" column="wid"/>
+      <result property="name" column="wname"/>
+      <result property="intro" column="wintro"/>
+      <result property="tImage" column="wtimage"/>
+      <result property="secondId" column="sid"/>
+    </collection>
+  </resultMap>
+</mapper>

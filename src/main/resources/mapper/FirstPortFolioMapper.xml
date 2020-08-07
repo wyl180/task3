@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.FirstPortFolioMapper">
+
+  <select id="getFirstPortfolio" resultMap="firstSecond">
+        select s.id sid ,s.name sname ,f.id fid ,f.name fname
+        from second_portfolio s, first_portfolio f
+        where s.first_id = f.id and f.id =#{id}
+    </select>
+  <resultMap id="firstSecond" type="com.jnshu.pojo.FirstPortFolio">
+    <result property="id" column="fid"/>
+    <result property="name" column="fname"/>
+    <collection property="secondPortFolioList" ofType="com.jnshu.pojo.SecondPortFolio">
+      <result property="id" column="sid"/>
+      <result property="name" column="sname"/>
+      <result property="id" column="fid"/>
+    </collection>
+  </resultMap>
+</mapper>

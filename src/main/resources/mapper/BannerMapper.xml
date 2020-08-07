@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.BannerMapper">
+  <resultMap id="BaseResultMap" type="com.jnshu.pojo.Banner">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_at" jdbcType="BIGINT" property="createAt" />
+    <result column="update_at" jdbcType="BIGINT" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, url, create_by, update_by, create_at, update_at
+  </sql>
+  <select id="selectBannerList"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from banner
+  </select>
+
+</mapper>

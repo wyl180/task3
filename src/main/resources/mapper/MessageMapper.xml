@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.MessageMapper">
+    <resultMap id="BaseResultMap" type="com.jnshu.pojo.Message">
+        <id column="id" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="message_at" jdbcType="BIGINT" property="messageTime"/>
+        <result column="message_by" jdbcType="VARCHAR" property="touristName"/>
+        <result column="works_id" jdbcType="INTEGER" property="worksId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="reply_name" jdbcType="VARCHAR" property="replyName"/>
+        <result column="reply_time" jdbcType="BIGINT" property="replyTime"/>
+        <result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+    </resultMap>
+    <insert id="insertMessage" parameterType="com.jnshu.pojo.Message" useGeneratedKeys="true">
+        insert into message(content,message_at,message_by,works_id) values (#{content},#{messageTime},#{touristName},#{worksId})
+    </insert>
+
+</mapper>
