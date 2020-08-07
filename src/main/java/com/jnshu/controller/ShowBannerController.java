@@ -21,7 +21,6 @@ import java.util.Map;
  * @Version 1.0
  */
 @Controller
-@RequestMapping("/task3")
 public class ShowBannerController {
     @Autowired
     ShowBannerService showBannerService;
