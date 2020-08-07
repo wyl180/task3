@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jnshu.dao.WorksMapper">
-  <resultMap id="BaseResultMap" type="com.jnshu.pojo.Works">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="second_id" jdbcType="INTEGER" property="secondId" />
-    <result column="t_image" jdbcType="VARCHAR" property="tImage" />
-    <result column="intro" jdbcType="VARCHAR" property="intro" />
-    <result column="d_image" jdbcType="VARCHAR" property="dImage" />
-    <result column="type" jdbcType="BIT" property="type" />
-    <result column="video" jdbcType="VARCHAR" property="video" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
-    <result column="create_at" jdbcType="BIGINT" property="createAt" />
-    <result column="update_at" jdbcType="BIGINT" property="updateAt" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jnshu.pojo.Works">
-    <result column="create_by" jdbcType="VARBINARY" property="createBy" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.jnshu.pojo.Works">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="second_id" jdbcType="INTEGER" property="secondId"/>
+        <result column="t_image" jdbcType="VARCHAR" property="tImage"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="d_image" jdbcType="VARCHAR" property="dImage"/>
+        <result column="type" jdbcType="BIT" property="type"/>
+        <result column="video" jdbcType="VARCHAR" property="video"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_at" jdbcType="BIGINT" property="createAt"/>
+        <result column="update_at" jdbcType="BIGINT" property="updateAt"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jnshu.pojo.Works">
+        <result column="create_by" jdbcType="VARBINARY" property="createBy"/>
+    </resultMap>
 
-  <!--多字段模糊查询-->
-  <select id="selectByKeyword" parameterType="java.util.Map" resultMap="BaseResultMap" >
-    SELECT
-    w.id,w.name,w.intro,w.t_image
-    FROM
-    works w
-    <where>
-    <if test="keywords != null and keywords != ''">
-      AND CONCAT(IFNULL(name,''),IFNULL(intro,'')) LIKE CONCAT('%', #{keywords},'%')
-    </if>
-    </where>
-  </select>
-  <!--查询这个作品下的所有留言-->
-  <select id="getWorksDetail" resultMap="worksDetail">
+    <!--多字段模糊查询-->
+    <select id="selectByKeyword" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        w.id,w.name,w.intro,w.t_image
+        FROM
+        works w
+        <where>
+            <if test="keywords != null and keywords != ''">
+                AND CONCAT(IFNULL(name,''),IFNULL(intro,'')) LIKE CONCAT('%', #{keywords},'%')
+            </if>
+        </where>
+    </select>
+    <!--查询这个作品下的所有留言-->
+    <select id="getWorksDetail" resultMap="worksDetail">
         select m.id mid ,
         m.content mContent,
         m.message_at messageAt,
@@ -46,23 +46,23 @@
         from  works w,message m
         where m.works_id = w.id and w.id =#{id}
     </select>
-  <resultMap id="worksDetail" type="com.jnshu.pojo.Works">
-    <result property="id" column="wid"/>
-    <result property="name" column="wName"/>
-    <collection property="messageList" ofType="com.jnshu.pojo.Message">
-      <result property="id" column="mid"/>
-      <result property="content" column="mContent"/>
-      <result property="messageTime" column="messageAt"/>
-      <result property="touristName" column="mMessageBy"/>
-      <result property="status" column="mStatus"/>
-      <result property="replyName" column="mReplyName"/>
-      <result property="replyTime" column="mReplyTime"/>
-      <result property="replyContent" column=" mReplyContent"/>
-      <result property="worksId" column="wid"/>
-    </collection>
-  </resultMap>
-  <!--单表查询作品详情-->
-  <select id="selectWorksById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <resultMap id="worksDetail" type="com.jnshu.pojo.Works">
+        <result property="id" column="wid"/>
+        <result property="name" column="wName"/>
+        <collection property="messageList" ofType="com.jnshu.pojo.Message">
+            <result property="id" column="mid"/>
+            <result property="content" column="mContent"/>
+            <result property="messageTime" column="messageAt"/>
+            <result property="touristName" column="mMessageBy"/>
+            <result property="status" column="mStatus"/>
+            <result property="replyName" column="mReplyName"/>
+            <result property="replyTime" column="mReplyTime"/>
+            <result property="replyContent" column="mReplyContent"/>
+            <result property="worksId" column="wid"/>
+        </collection>
+    </resultMap>
+    <!--单表查询作品详情-->
+    <select id="selectWorksById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select *from works where id=#{id}
   </select>
 </mapper>
