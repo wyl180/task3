@@ -22,7 +22,6 @@ import java.util.Map;
 public class FindController  {
     @Autowired
     FindService findService;
-
     @GetMapping("/find")
     @ResponseBody
     public Map<String,Object> findByKeyword(@RequestParam String keyword){

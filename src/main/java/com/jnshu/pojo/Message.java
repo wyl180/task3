@@ -6,12 +6,10 @@ package com.jnshu.pojo;
  * @Date 2020/8/4 14:36
  **/
 
-import javax.validation.constraints.Size;
 
 public class Message {
     private int id;
     /**留言内容*/
-    @Size(min = 1,max = 10)
     private String content;
    /**留言时间*/
     private long messageTime;
@@ -98,5 +96,20 @@ public class Message {
 
     public void setReplyTime(String replyTime) {
         this.replyTime = replyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", messageTime=" + messageTime +
+                ", worksId=" + worksId +
+                ", touristName='" + touristName + '\'' +
+                ", status=" + status +
+                ", replyName='" + replyName + '\'' +
+                ", replyContent='" + replyContent + '\'' +
+                ", replyTime='" + replyTime + '\'' +
+                '}';
     }
 }

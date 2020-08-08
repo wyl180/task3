@@ -12,12 +12,7 @@ import java.util.List;
  * @Version 1.0
  */
 public interface FirstPortfolioService {
-    /**
-     * 查找一级导航下的二级导航
-     * @param id
-     * @return
-     */
-    FirstPortFolio getFirstPortfolio(int id);
+
 
     /**
      * 查看全部一级导航

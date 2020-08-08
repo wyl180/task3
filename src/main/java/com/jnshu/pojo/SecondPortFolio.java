@@ -16,9 +16,7 @@ public class SecondPortFolio {
     private String name;
     /**二级分类下的作品列表*/
     private List<Works> worksList;
-    /**所属一级分类id*/
 
-    private Integer firstId;
     /**创建人*/
 
     private String createBy;
@@ -56,13 +54,7 @@ public class SecondPortFolio {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getFirstId() {
-        return firstId;
-    }
 
-    public void setFirstId(Integer firstId) {
-        this.firstId = firstId;
-    }
 
     public String getCreateBy() {
         return createBy;
@@ -102,7 +94,6 @@ public class SecondPortFolio {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", worksList=" + worksList +
-                ", firstId=" + firstId +
                 ", createBy='" + createBy + '\'' +
                 ", updateBy='" + updateBy + '\'' +
                 ", createAt=" + createAt +

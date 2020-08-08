@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jnshu.dao.FirstPortFolioMapper">
-
-  <select id="getFirstPortfolio" resultMap="firstSecond">
-        select s.id sid ,s.name sname ,f.id fid ,f.name fname
-        from second_portfolio s, first_portfolio f
-        where s.first_id = f.id and f.id =#{id}
+  <!--查出全部一级导航下的的全部二级导航-->
+  <select id="getFirstPortfolio" resultMap="firstPortfolio">
+       SELECT f.*,s.*,s.id sid,s.name sname,f.name fname,f.id fid  FROM first_portfolio f
+         LEFT OUTER JOIN frist_second fs on f.id = fs.first_id
+          LEFT OUTER JOIN second_portfolio s on fs.second_id = s.id
     </select>
-  <resultMap id="firstSecond" type="com.jnshu.pojo.FirstPortFolio">
-    <result property="id" column="fid"/>
+  <resultMap id="firstPortfolio" type="com.jnshu.pojo.FirstPortFolio">
+    <id property="id" column="fid"/>
     <result property="name" column="fname"/>
+    <result property="createAt" column="create_at"/>
+    <result property="updateAt" column="update_at"/>
+    <result property="createBy" column="create_by"/>
+    <result property="updateBy" column="update_by"/>
     <collection property="secondPortFolioList" ofType="com.jnshu.pojo.SecondPortFolio">
-      <result property="id" column="sid"/>
+      <id property="id" column="sid"/>
       <result property="name" column="sname"/>
-      <result property="id" column="fid"/>
+      <result property="createBy" column="create_by"/>
+      <result property="updateBy" column="update_by"/>
+      <result property="createAt" column="create_at"/>
+      <result property="updateAt" column="update_at"/>
     </collection>
   </resultMap>
 </mapper>

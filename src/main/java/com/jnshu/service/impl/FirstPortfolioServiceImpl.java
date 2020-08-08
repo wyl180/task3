@@ -6,6 +6,8 @@ import com.jnshu.service.FirstPortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName FirstPortfolioServiceImpl
  * @Description
@@ -17,10 +19,10 @@ import org.springframework.stereotype.Service;
 public class FirstPortfolioServiceImpl implements FirstPortfolioService {
     @Autowired
     FirstPortFolioMapper firstPortFolioMapper;
+
+
     @Override
-    public FirstPortFolio getFirstPortfolio(int id) {
-        return firstPortFolioMapper.getFirstPortfolio(id);
+    public List<FirstPortFolio> getAllFirstPortFolio() {
+        return firstPortFolioMapper.getFirstPortfolio();
     }
-
-
 }

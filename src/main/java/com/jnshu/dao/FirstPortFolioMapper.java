@@ -2,6 +2,8 @@ package com.jnshu.dao;
 
 import com.jnshu.pojo.FirstPortFolio;
 
+import java.util.List;
+
 /**
  * @Author 韦延伦
  * @Description 根据id查找一级作品分类的Mapper接口
@@ -9,11 +11,13 @@ import com.jnshu.pojo.FirstPortFolio;
  **/
 public interface FirstPortFolioMapper {
     /**
-     * 根据id查找一级作品分类
-     * @param id
+     * 查找一级作品分类列表
+     * @param
      * @return FirstPortFolio
      */
-    FirstPortFolio getFirstPortfolio(int id);
+    List<FirstPortFolio> getFirstPortfolio();
 
     int getFirstPortfolioCount();
+
+
 }
