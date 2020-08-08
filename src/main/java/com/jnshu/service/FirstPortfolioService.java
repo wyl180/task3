@@ -2,6 +2,8 @@ package com.jnshu.service;
 
 import com.jnshu.pojo.FirstPortFolio;
 
+import java.util.List;
+
 /**
  * @ClassName FirstPortfolio
  * @Description
@@ -17,4 +19,9 @@ public interface FirstPortfolioService {
      */
     FirstPortFolio getFirstPortfolio(int id);
 
+    /**
+     * 查看全部一级导航
+     * @return
+     */
+    List<FirstPortFolio> getAllFirstPortFolio();
 }
